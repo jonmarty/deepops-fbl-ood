@@ -47,9 +47,9 @@ slurm_login_on_compute: false
 ################################################################################
 slurm_configure_etc_hosts: yes
 dns_mode: none
-slurm_cluster_install_cuda: yes
+slurm_cluster_install_cuda: no
 slurm_cluster_install_nvidia_driver: yes
-slurm_cluster_install_singularity: no
+slurm_cluster_install_singularity: yes
 
 ################################################################################
 # NFS                                                                          #
@@ -114,7 +114,7 @@ sm_install_host: "slurm-master[0]"
 ################################################################################
 # NVIDIA HPC SDK                                                               #
 ################################################################################
-slurm_install_hpcsdk: true
+slurm_install_hpcsdk: false
 
 # Select the version of HPC SDK to download
 hpcsdk_major_version: "21"
@@ -143,14 +143,14 @@ openmpi_configure: "./configure --prefix={{ openmpi_install_prefix }} --disable-
 ################################################################################
 # Open OnDemand                                                                #
 ################################################################################
-install_open_ondemand: no
+install_open_ondemand: yes
 # OOD Linux-host adapter requires `slurm_cluster_install_singularity` to be true
-ood_install_linuxhost_adapter: no
+ood_install_linuxhost_adapter: yes
 
 servername: '{{ ansible_fqdn }}'
-httpd_port: 9050
+httpd_port: 80
 httpd_listen_addr_port:
-  - 9050
+  - 80
 httpd_use_rewrites: false
 node_uri: /node
 rnode_uri: /rnode
