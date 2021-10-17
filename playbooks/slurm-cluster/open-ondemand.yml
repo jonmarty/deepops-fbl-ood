@@ -1,8 +1,22 @@
 ---
 - hosts: slurm-master[0]
   become: yes
+  tasks:
+    - name: Transfer OOD SSL certificate file to slurm-master
+      copy:
+        src: "{{ ood_ssl_certificate }}"
+        dest: /tmp/ood-portal.crt
+      when: ood_use_ssl | default(false)
+    - name: Transfer OOD SSL certificate key file to slurm-master
+      copy:
+        src: "{{ ood_ssl_certificate_key }}"
+        dest: /tmp/ood-portal.key
+      when: ood_use_ssl | default(false)
+
+- hosts: slurm-master[0]
+  become: yes
   roles:
-    - {role: ood-wrapper, ood_is_server: yes }
+    - {role: ood-wrapper, ood_is_server: yes, ood_use_ssl: ood_use_ssl}
 
 - hosts: slurm-node
   become: yes
