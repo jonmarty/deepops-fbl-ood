@@ -101,12 +101,6 @@
   tags:
     - configure
   when: ansible_os_family == 'RedHat'
-  
-- name: install apache2 ssl module
-  apache2_module:
-    state: present
-    name: ssl
-  when: ood_use_ssl | default(false)
 
 - name: restart apache after module install
   systemd:
@@ -225,3 +219,7 @@
     mode: 0755
   tags:
     - configure
+
+- name: install and apply ssl authentication to ood directory
+  include: ssl.yml
+  when: ood_use_ssl | default(false)
