@@ -2,6 +2,7 @@ install_from_src: true
 
 ood_apache_service_name: apache2
 ood_htpasswd_file: /etc/apache2/.htpasswd
+ood_use_ssl: no
 
 ood_portal_generator: false
 
