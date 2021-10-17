@@ -155,6 +155,10 @@ httpd_use_rewrites: false
 node_uri: /node
 rnode_uri: /rnode
 
+ood_use_ssl: no
+ood_ssl_certificate: ''
+ood_ssl_certificate_key: ''
+
 ################################################################################
 # Allow the User Permission to Set GPU Clocks                                  #
 ################################################################################
