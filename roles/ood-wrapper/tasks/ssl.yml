@@ -1,0 +1,46 @@
+- name: Install apache2 SSL module
+  apache2_module:
+    name: ssl
+    state: present
+
+- name: Create Apache2 SSL encryption key directory
+  file:
+    path: /etc/apache2/ssl
+    state: directory
+    mode: 0644
+
+- name: Copy SSL certificate file to SSL directory
+  copy:
+    src: /tmp/ood-portal.crt
+    dest: /etc/apache2/ssl
+    mode: 0644
+
+- name: Copy SSL certificate key file to SSL directory
+  copy:
+    src: /tmp/ood-portal.key
+    dest: /etc/apache2/ssl
+    mode: 0644
+
+- name: Apply SSL engine to ood portal
+  lineinfile:
+    path: /etc/apache2/conf-enabled/ood-portal.conf
+    line: "SSLEngine on"
+    state: present
+    backup: yes
+
+- name: Set SSL certificate file to be used by ood portal
+  lineinfile:
+    path: /etc/apache2/conf-enabled/ood-portal.conf
+    line: "SSLCertificateFile /etc/apache2/ssl/ood-portal.crt"
+    state: present
+    backup: yes
+
+- name: Set SSL certificate key file to be used by ood portal
+  lineinfile:
+    path: /etc/apache2/conf-enabled/ood-portal.conf
+    line: "SSLCertificateKeyFile /etc/apache2/ssl/ood-portal.key"
+
+- name: Restart Apache2 to manifest changes
+  service:
+    name: apache2
+    state: restarted
