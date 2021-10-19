@@ -5,12 +5,12 @@
     - name: Transfer OOD SSL certificate file to slurm-master
       copy:
         src: "{{ ood_ssl_certificate }}"
-        dest: /tmp/ood-portal.crt
+        dest: /etc/apache2/ssl/ood-portal.crt
       when: ood_use_ssl | default(false)
     - name: Transfer OOD SSL certificate key file to slurm-master
       copy:
         src: "{{ ood_ssl_certificate_key }}"
-        dest: /tmp/ood-portal.key
+        dest: /etc/apache2/ssl/ood-portal.key
       when: ood_use_ssl | default(false)
 
 - hosts: slurm-master[0]
