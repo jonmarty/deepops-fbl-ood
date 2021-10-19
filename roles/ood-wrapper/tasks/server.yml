@@ -223,3 +223,9 @@
 - name: install and apply ssl authentication to ood directory
   include: ssl.yml
   when: ood_use_ssl | default(false)
+
+- name: replace apache ports (freeing up ports 80 and 9050)
+  copy:
+      dest: "/etc/apache2/ports.conf"
+      content: |
+        Listen 9000
