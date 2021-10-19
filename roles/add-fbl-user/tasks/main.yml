@@ -1,0 +1,5 @@
+- name: Add new FBL user on server
+  include: server.yml
+
+- name: Add new FBL user on client
+  include: client.yml
