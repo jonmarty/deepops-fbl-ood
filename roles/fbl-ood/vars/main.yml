@@ -1,1 +1,4 @@
+is_server: no
+is_client: no
 main_user: 'ubuntu'
+use_cas: no
