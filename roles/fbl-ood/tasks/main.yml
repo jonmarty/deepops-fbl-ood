@@ -6,7 +6,7 @@
        update: yes
 
 - name: Copy OOD-APP into OOD apps directory
-  command: cp -r /home/ubuntu/fbl-ood/ood-app /opt/ood/apps/.../fbl-ood
+  command: cp -r /home/ubuntu/fbl-ood/OOD-app /var/www/ood/apps/sys/fbl-ood
 
 - name: Copy fbl-ood scripts to /bin
   command: cp /home/ubuntu/fbl-ood/bin/* /bin
