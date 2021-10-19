@@ -9,17 +9,17 @@
     state: directory
     mode: 0644
 
-- name: Copy SSL certificate file to SSL directory
-  command: cp /tmp/odd-portal.crt /etc/apache2/ssl/ood-portal.crt
-
-- name: Set the permissions for the SSL certificate file
-  command: chmod 400 /etc/apache2/ssl/ood-portal.crt
-
-- name: Copy SSL certificate key file to SSL directory
-  command: cp /tmp/ood-portal.key /etc/apache2/ssl
-
-- name: Set the permissions for SSL certificate key file
-  command: chmod 400 /etc/apache2/ssl/ood-portal.key
+#- name: Copy SSL certificate file to SSL directory
+#  command: cp /tmp/odd-portal.crt /etc/apache2/ssl/ood-portal.crt
+#
+#- name: Set the permissions for the SSL certificate file
+#  command: chmod 400 /etc/apache2/ssl/ood-portal.crt
+#
+#- name: Copy SSL certificate key file to SSL directory
+#  command: cp /tmp/ood-portal.key /etc/apache2/ssl
+#
+#- name: Set the permissions for SSL certificate key file
+#  command: chmod 400 /etc/apache2/ssl/ood-portal.key
 
 - name: Apply SSL engine to ood portal
   lineinfile:
