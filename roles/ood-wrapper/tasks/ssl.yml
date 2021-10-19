@@ -11,13 +11,13 @@
 
 - name: Copy SSL certificate file to SSL directory
   copy:
-    src: /tmp/ood-portal.crt
+    remote_src: /tmp/ood-portal.crt
     dest: /etc/apache2/ssl
     mode: 0644
 
 - name: Copy SSL certificate key file to SSL directory
   copy:
-    src: /tmp/ood-portal.key
+    remote_src: /tmp/ood-portal.key
     dest: /etc/apache2/ssl
     mode: 0644
 
