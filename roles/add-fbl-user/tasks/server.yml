@@ -1,0 +1,13 @@
+- name: Add UNIX user
+  when: new_user | default(false)
+
+- name: Set permissions for /home/NEWUSER
+  when: new_user | default(false)
+
+- name: Configure ssh to allow NEWUSER
+
+- name: Add slurm user
+
+- name: Add newuser to Open OnDemand
+
+- name: Restarting Apache2 Server
