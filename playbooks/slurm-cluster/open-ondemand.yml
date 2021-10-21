@@ -2,6 +2,10 @@
 - hosts: slurm-master[0]
   become: yes
   tasks:
+    - name: Ensure /etc/apache2/ssl exists
+      file:
+        path: /etc/apache2/ssl
+        state: directory
     - name: Transfer OOD SSL certificate file to slurm-master
       copy:
         src: "{{ ood_ssl_certificate }}"
