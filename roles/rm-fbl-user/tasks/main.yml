@@ -1,0 +1,7 @@
+- name: Remove FBL user on server
+  include: server.yml
+  when: is_server | default(false)
+
+- name: Remove FBL user on client
+  include: client.yml
+  when: is_client | default(false)
