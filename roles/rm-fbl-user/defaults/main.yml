@@ -1,0 +1,3 @@
+ood-passwd-file: "/etc/apache2/.htpasswd"
+ood-unix-group: "ood"
+ood-slurm-account: "ood"
