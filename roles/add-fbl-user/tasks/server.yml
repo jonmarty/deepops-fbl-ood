@@ -1,13 +1,37 @@
 - name: Add UNIX user
+  command:
+    - useradd -m -u "{{ user }}" -p `mkpasswd "{{ password }}"` -s \bin\bash -d "/home/{{ user }}" "{{ user }}"
+    - usermod -aG "{{ ood-unix-group }}" "{{ user }}"
   when: new_user | default(false)
 
 - name: Set permissions for /home/NEWUSER
+  command: chmod go-rwx "/home/{{ user }}"
   when: new_user | default(false)
 
 - name: Configure ssh to allow NEWUSER
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: "AllowUsers {{ user }}"
+    state: present
+    backup: yes 
+
+- name: Restarting ssh
+  systemd:
+    service: ssh
+    state: restarted
+
+- name: Restarting sshd
+  systemd:
+    service: sshd
+    state: restarted
 
 - name: Add slurm user
+  command: sacctmgr add user "{{ user }}" account="{{ ood-slurm-account }}"
 
 - name: Add newuser to Open OnDemand
+  command: htpasswd -b "{{ ood-passwd-file }}" "{{ user }}" "{{ password }}"
 
 - name: Restarting Apache2 Server
+  systemd:
+    service: apache2
+    state: restarted
