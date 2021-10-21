@@ -220,10 +220,6 @@
   tags:
     - configure
 
-- name: install and apply ssl authentication to ood directory
-  include: ssl.yml
-  when: ood_use_ssl | default(false)
-
 - name: replace apache ports in /etc/apache2/ports.conf (freeing up ports 80 and 443)
   command: echo "Listen 9000" > /etc/apache2/port.conf
 
@@ -232,3 +228,7 @@
 
 - name: change 443->9000 in /etc/apache2/sites-enabled/000-default.conf
   command: sed 's/443/9000/g' /etc/apache2/sites-enabled/000-default.conf
+
+- name: install and apply ssl authentication to ood directory
+  include: ssl.yml
+  when: ood_use_ssl | default(false)
