@@ -20,3 +20,4 @@
     state: restarted
 
 - name: Remove FBL user directory
+  command: echo TODO
