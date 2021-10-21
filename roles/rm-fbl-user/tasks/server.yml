@@ -1,0 +1,31 @@
+- name: Remove unix user
+  command:
+    - gpasswd -d "{{ user }}" "{{ ood-unix-group }}"
+    - userdel -r "{{ user }}"
+  
+- name: Remove ssh user
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: "AllowUsers {{ user }}"
+    state: absent
+
+- name: Restarting ssh
+  systemd:
+    service: ssh
+    state: restarted
+
+- name: Restarting sshd
+  systemd:
+    service: sshd
+    state: restarted
+  
+- name: Remove slurm user
+  command: sacctmgr delete user name="{{ user }}" account="{{ ood-slurm-account }}"
+
+- name: Remove ood user
+  command: htpasswd -D "{{ ood-passwd-file }}" "{{ user }}"
+
+- name: Restart Apache2 server
+  systemd:
+    service: apache2
+    state: restarted
