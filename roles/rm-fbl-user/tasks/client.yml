@@ -1,0 +1,22 @@
+- name: Remove unix user
+  command:
+    - gpasswd -d "{{ user }}" "{{ ood-unix-group }}"
+    - userdel "{{ user }}"
+
+- name: Remove ssh user
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: "AllowUsers {{ user }}"
+    state: absent
+
+- name: Restart ssh
+  systemd:
+    service: ssh
+    state: restarted
+
+- name: Restart sshd
+  systemd:
+    service: sshd
+    state: restarted
+
+- name: Remove FBL user directory
