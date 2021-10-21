@@ -1,0 +1,34 @@
+- name: Add unix user
+  command:
+    - useradd -m -u "{{ user }}" -p `mkpasswd "{{ password }}"` -s /bin/bash -d "/home/{{ user }}" "{{ user }}"
+    - usermod -aG "{{ ood-unix-group }}" "{{ user }}"
+  when: new_user | default(false)
+
+- name: Configure SSH to allow new user
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: "AllowUsers {{ user }}"
+    state: present
+    backup: yes
+
+- name: Restart ssh
+  systemd:
+    service: ssh
+    state: restarted
+
+- name: Restart sshd
+  systemd:
+    service: sshd
+    state: restarted
+
+- name: Add FBL user directory
+  command: echo TODO
+
+- name: Set permissions for FBL user directory
+  command: echo TODO
+
+- name: Copy singularity sandbox image into FBL user directory
+  command: echo TODO
+
+- name: Giving user ownership of the singularity sandbox image
+  command: echo TODO
