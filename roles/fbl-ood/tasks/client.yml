@@ -1,0 +1,3 @@
+- name: Add fbl user on client
+  roles:
+    - {role: add-fbl-user, is_client: yes, user: ansible_user, new_user: no}
