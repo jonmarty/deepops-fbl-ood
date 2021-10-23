@@ -84,26 +84,26 @@
 - name: replace port 80 with 9080 in /etc/apache2/ports.conf
   replace:
     path: /etc/apache2/ports.conf
-    regexp: '80'
-    replace: '9080'
+    regexp: 'Listen 80'
+    replace: 'Listen 9080'
 
 - name: replace port 443 with 9443 in /etc/apache2/ports.conf
   replace:
     path: /etc/apache2/ports.conf
-    regexp: '443'
-    replace: '9443'
+    regexp: 'Listen 443'
+    replace: 'Listen 9443'
 
 - name: replace port 80 with 9080 in /etc/apache2/sites-enabled/000-default.conf
   replace:
     path: /etc/apache2/sites-enabled/000-default.conf
-    regexp: '80'
-    replace: '9080'
+    regexp: 'VirtualHost *:80'
+    replace: 'VirtualHost *:9080'
 
 - name: replace port 443 with 9443 in /etc/apache2/sites-enabled/000-default.conf
   replace:
     path: /etc/apache2/sites-enabled/000-default.conf
-    regexp: '443'
-    replace: '9443'
+    regexp: 'VirtualHost: *:443'
+    replace: 'VirtualHost *:9443'
 
 - name: install required apache module
   apache2_module:
