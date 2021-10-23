@@ -12,5 +12,9 @@
 #  command: cp /home/ubuntu/fbl-ood/bin/* /bin
 
 - name: Add main fbl user on server
-  roles:
-    - {role: add-fbl-user, is_server: yes, user: ansible_user, new_user: no}
+  include_role:
+    name: add-fbl-user
+  vars:
+    is_server: yes
+    user: ansible_user
+    new_user: no
