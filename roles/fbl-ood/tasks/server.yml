@@ -11,7 +11,6 @@
 #- name: Copy fbl-ood scripts to /bin
 #  command: cp /home/ubuntu/fbl-ood/bin/* /bin
 
-- hosts: slurm-master[0]
-  become: yes
+- name: Add main fbl user on server
   roles:
     - {role: add-fbl-user, is_server: yes, user: ansible_user, new_user: no}
