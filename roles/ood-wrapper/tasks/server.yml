@@ -220,14 +220,29 @@
   tags:
     - configure
 
-- name: replace apache ports in /etc/apache2/ports.conf (freeing up ports 80 and 443)
-  command: echo "Listen 9000" > /etc/apache2/port.conf
+- name: replace port 80 with 9080 in /etc/apache2/ports.conf
+  replace:
+    path: /etc/apache2/ports.conf
+    regexp: '80'
+    replace: '9080'
 
-- name: change 80->9000 in /etc/apache2/sites-enabled/000-default.conf
-  command: sed 's/80/9000/g' /etc/apache2/sites-enabled/000-default.conf
+- name: replace port 443 with 9443 in /etc/apache2/ports.conf
+  replace:
+    path: /etc/apache2/ports.conf
+    regexp: '443'
+    replace: '9443'
 
-- name: change 443->9000 in /etc/apache2/sites-enabled/000-default.conf
-  command: sed 's/443/9000/g' /etc/apache2/sites-enabled/000-default.conf
+- name: replace port 80 with 9080 in /etc/apache2/sites-enabled/000-default.conf
+  replace:
+    path: /etc/apache2/sites-enabled/000-default.conf
+    regexp: '80'
+    replace: '9080'
+
+- name: replace port 443 with 9443 in /etc/apache2/sites-enabled/000-default.conf
+  replace:
+    path: /etc/apache2/sites-enabled/000-default.conf
+    regexp: '443'
+    replace: '9443'
 
 - name: install and apply ssl authentication to ood directory
   include: ssl.yml
