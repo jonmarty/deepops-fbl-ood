@@ -1,23 +1,8 @@
-- name: Clone FBL-OOD repository
-  git:
-       repo: https://github.com/jonmarty/FlyBrainLab-OOD
-       dest: /home/ubuntu/fbl-ood
-       clone: yes
-       update: yes
+- name: Set up FBL-OOD on server
+  include: server.yml
+  when: is_server
 
-- name: Copy OOD-APP into OOD apps directory
-  command: cp -r /home/ubuntu/fbl-ood/OOD-app /var/www/ood/apps/sys/fbl-ood
-
-#- name: Copy fbl-ood scripts to /bin
-#  command: cp /home/ubuntu/fbl-ood/bin/* /bin
-
-- hosts: slurm-master[0]
-  become: yes
-  roles:
-    - {role: add-fbl-user, is_server: yes, user: ansible_user, new_user: no}
-
-- hosts: slurm-node
-  becomes: yes
-  roles:
-    - {role: add-fbl-user, is_client: yes, user: ansible_user, new_user: no}
+- name: Set up FBL-OOD on client
+  include: client.yml
+  when: is_client
   
