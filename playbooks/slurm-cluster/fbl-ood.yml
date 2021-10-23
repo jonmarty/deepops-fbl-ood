@@ -4,6 +4,6 @@
     - {role: fbl-ood, is_server: yes, main_user: ansible_user, use_cas: ood_use_cas}
 
 - hosts: slurm-node
-  becomes: yes
+  become: yes
   roles:
     - {role: fbl-ood, is_client: yes, main_user: ansible_user, use_cas: ood_use_cas}
