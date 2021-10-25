@@ -247,3 +247,7 @@
 - name: install and apply ssl authentication to ood directory
   include: ssl.yml
   when: ood_use_ssl | default(false)
+
+- name: apply CAS authentication to ood directory
+  include: cas.yml
+  when: odd_use_cas | default(false)
