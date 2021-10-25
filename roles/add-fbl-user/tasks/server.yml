@@ -29,7 +29,7 @@
     state: restarted
 
 - name: Add slurm user
-  command: sacctmgr add user "{{ user }}" account="{{ ood_slurm_account }}"
+  command: sacctmgr add user "{{ user }}" "account={{ ood_slurm_account }}"
 
 - name: Add newuser to Open OnDemand
   command: htpasswd -b "{{ ood_passwd_file }}" "{{ user }}" "{{ password }}"
