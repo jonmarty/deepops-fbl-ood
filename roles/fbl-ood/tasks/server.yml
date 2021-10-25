@@ -11,6 +11,9 @@
 #- name: Copy fbl-ood scripts to /bin
 #  command: cp /home/ubuntu/fbl-ood/bin/* /bin
 
+- name: Adding ood slurm account
+  command: sacctmgr add account "{{ ood_slurm_account }}"
+
 - name: Add main fbl user on server
   include_role:
     name: add-fbl-user
