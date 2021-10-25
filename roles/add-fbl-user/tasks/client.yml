@@ -1,7 +1,9 @@
-- name: Add unix user
-  command:
-    - useradd -m -u "{{ user }}" -p `mkpasswd "{{ password }}"` -s /bin/bash -d "/home/{{ user }}" "{{ user }}"
-    - usermod -aG "{{ ood-unix-group }}" "{{ user }}"
+- name: Add unix user on client
+  command: useradd -m -u "{{ user }}" -p `mkpasswd "{{ password }}"` -s /bin/bash -d "/home/{{ user }}" "{{ user }}"
+  when: new_user | default(false)
+
+- name: Modify unix user permissions on client
+  command: usermod -aG "{{ ood-unix-group }}" "{{ user }}"
   when: new_user | default(false)
 
 - name: Configure SSH to allow new user
