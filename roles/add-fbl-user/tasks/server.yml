@@ -29,10 +29,10 @@
     state: restarted
 
 - name: Add slurm user
-  command: sacctmgr add user "{{ user }}" account="{{ ood-slurm-account }}"
+  command: sacctmgr add user "{{ user }}" account="{{ ood_slurm_account }}"
 
 - name: Add newuser to Open OnDemand
-  command: htpasswd -b "{{ ood-passwd-file }}" "{{ user }}" "{{ password }}"
+  command: htpasswd -b "{{ ood_passwd_file }}" "{{ user }}" "{{ password }}"
 
 - name: Restarting Apache2 Server
   systemd:
