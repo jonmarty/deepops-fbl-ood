@@ -1,5 +1,6 @@
-#- name: Create FBL directory (under which fbl user directories are housed) on client
-#  command: echo TODO
+- name: Create FBL directory (under which fbl user directories are housed) on client
+  file:
+    path: "{{ fbl_directory }}"
 
 #- name: Add main fbl user on client
 #  roles:
