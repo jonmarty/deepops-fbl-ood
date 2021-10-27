@@ -24,13 +24,19 @@
     state: restarted
 
 - name: Add FBL user directory
-  command: echo TODO
-
-- name: Set permissions for FBL user directory
-  command: echo TODO
+  file:
+    path: "{{ fbl_directory }}/{{ user }}"
+    state: directory
+    mode: 0755
+    owner: "{{ user }}"
+  tags:
+    - configure
 
 - name: Copy singularity sandbox image into FBL user directory
-  command: echo TODO
+  command: cp -r "{{ fbl_directory }}/fbl_image" "{{ fbl_directory }}/{{ user }}/fbl_image"
 
 - name: Giving user ownership of the singularity sandbox image
-  command: echo TODO
+  file:
+    path: "{{ fbl_directory }}/{{ user }}/fbl_image
+    mode: 0755
+    owner: "{{ user }}"
