@@ -1,3 +1,6 @@
 ood_passwd_file: "/etc/apache2/.htpasswd"
 ood_unix_group: "ood"
 ood_slurm_account: "ood"
+
+is_server: no
+is_client: no
