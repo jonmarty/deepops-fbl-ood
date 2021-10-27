@@ -1,0 +1,10 @@
+- name: Installing CAS package
+  include: install_cas.yml
+
+- name: Applying CAS authentication
+  include: apply_cas.yml
+
+- name: Restarting Apache2
+  service:
+         name: apache2
+         state: restarted
