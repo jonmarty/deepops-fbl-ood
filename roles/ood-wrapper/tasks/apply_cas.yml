@@ -36,15 +36,15 @@
     backup: yes
 
 - name: Make sure CAS login URL is included in ood portal
-    lineinfile:
-      path: /etc/apache2/conf-enabled/ood-portal.conf
-      line: "CASLoginURL {{ cas_login_url }}"
-      state: present
-      backup: yes
+  lineinfile:
+    path: /etc/apache2/conf-enabled/ood-portal.conf
+    line: "CASLoginURL {{ cas_login_url }}"
+    state: present
+    backup: yes
 
 - name: Make sure CAS validate url is in ood portal
-    lineinfile:
-      path: /etc/apache2/conf-enabled/ood-portal.conf
-      line: "CASValidateURL {{ cas_validate_url }}"
-      state: present
-      backup: yes
+  lineinfile:
+    path: /etc/apache2/conf-enabled/ood-portal.conf
+    line: "CASValidateURL {{ cas_validate_url }}"
+    state: present
+    backup: yes
