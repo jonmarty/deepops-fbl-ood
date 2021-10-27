@@ -48,3 +48,16 @@
     line: "CASValidateURL {{ cas_validate_url }}"
     state: present
     backup: yes
+
+- name: Replace HTTPD auth with CAS auth
+  replace:
+    path: /etc/apache2/conf-enabled/ood-portal.conf
+    regexp: "AuthType Basic"
+    replace: "AuthType CAS"
+
+- name: Remove extra HTTPD auth lines
+  lineinfile:
+    path: /etc/apache2/conf-enabled/ood-portal.conf
+    regexp: "TODO"
+    state: absent
+    backup: yes
