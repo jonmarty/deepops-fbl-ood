@@ -1,0 +1,29 @@
+- name: Install apache2 development package
+  apt:
+          name: apache2-dev
+          state: present
+
+- name: Install Apache Portable Runtime (APR) libraries
+  apt:
+          name: libapr1-dev
+          state: present
+
+- name: Install APR utility libraries
+  apt:
+          name: libaprutil1-dev
+          state: present
+
+- name: Install SSL libraries
+  apt:
+          name: libssl-dev
+          state: present
+
+- name: Install CURL libraries (using SSL as a backend)
+  apt:
+          name: libcurl4-openssl-dev
+          state: present
+
+- name: Install PCRE libraries
+  apt:
+          name: libpcre3-dev
+          state: present
