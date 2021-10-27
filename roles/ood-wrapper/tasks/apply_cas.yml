@@ -7,16 +7,44 @@
           mode: 0755
           recurse: yes
 
-- name: Create CAS config directory
-  file:
-          path: "{{ cas_config_directory }}"
-          state: directory
-          owner: www-data
-          group: www-data
-          mode: 0755
-          recurse: yes
+#- name: Create CAS config directory
+#  file:
+#          path: "{{ cas_config_directory }}"
+#          state: directory
+#          owner: www-data
+#          group: www-data
+#          mode: 0755
+#          recurse: yes
+#
+#- name: Create CAS config file
+#  template:
+#          src: ../templates/cas.conf.j2
+#          dest: "{{ cas_config_directory }}/{{ cas_config_file }}"
 
-- name: Create CAS config file
-  template:
-          src: ../templates/cas.conf.j2
-          dest: "{{ cas_config_directory }}/{{ cas_config_file }}"
+- name: Make sure cas module is included in ood portal
+  lineinfile:
+    path: /etc/apache2/conf-enabled/ood-portal.conf
+    line: "LoadModule auth_cas_module /usr/lib/apache2/modules/mod_auth_cas.so"
+    state: present
+    backup: yes
+ 
+- name: Make sure CAS cookie path is included in ood portal
+  lineinfile:
+    path: /etc/apache2/conf-enabled/ood-portal.conf
+    line: "CASCookiePath {{ cas_cookie_path }}"
+    state: present
+    backup: yes
+
+- name: Make sure CAS login URL is included in ood portal
+    lineinfile:
+      path: /etc/apache2/conf-enabled/ood-portal.conf
+      line: "CASLoginURL {{ cas_login_url }}"
+      state: present
+      backup: yes
+
+- name: Make sure CAS validate url is in ood portal
+    lineinfile:
+      path: /etc/apache2/conf-enabled/ood-portal.conf
+      line: "CASValidateURL {{ cas_validate_url }}"
+      state: present
+      backup: yes
