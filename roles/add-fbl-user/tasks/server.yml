@@ -29,7 +29,10 @@
     state: restarted
 
 - name: Add slurm user
-  command: sacctmgr add user "{{ user }}" "account={{ ood_slurm_account }}"
+  command: sacctmgr -i create user {{user}} account={{ood_slurm_account}} adminlevel=None
+  register: create_user_result
+  failed_when: "create_user_result.rc != 0 and 'Nothing new added' not in create_user_result.stdout"
+  changed_when: "'Nothing new added' not in create_user_result.stdout"
 
 - name: Add newuser to Open OnDemand
   command: htpasswd -b "{{ ood_passwd_file }}" "{{ user }}" "{{ password }}"
