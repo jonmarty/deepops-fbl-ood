@@ -1,0 +1,22 @@
+- name: Create CAS cookie cache
+  file:
+          path: "{{ cas_cookie_path }}"
+          state: directory
+          owner: www-data
+          group: www-data
+          mode: 0755
+          recurse: yes
+
+- name: Create CAS config directory
+  file:
+          path: "{{ cas_config_directory }}"
+          state: directory
+          owner: www-data
+          group: www-data
+          mode: 0755
+          recurse: yes
+
+- name: Create CAS config file
+  template:
+          src: ../templates/cas.conf.j2
+          dest: "{{ cas_config_directory }}/{{ cas_config_file }}"
