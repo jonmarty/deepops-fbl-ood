@@ -4,3 +4,5 @@ ood-slurm-account: "ood"
 
 is_server: no
 is_client: no
+
+fbl_directory: "/fbl/"
