@@ -1,8 +1,8 @@
 - name: Set up FBL-OOD on server
   include: server.yml
-  when: is_server
+  when: is_server | default(false)
 
 - name: Set up FBL-OOD on client
   include: client.yml
-  when: is_client
+  when: is_client | default(false)
   
