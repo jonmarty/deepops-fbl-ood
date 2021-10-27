@@ -1,5 +1,3 @@
-is_server: no
-is_client: no
 user: 'ubuntu'
 new_user: yes
 password: ''
