@@ -28,7 +28,7 @@
     path: "{{ fbl_directory }}/{{ user }}"
     state: directory
     mode: 0755
-    owner: user
+    owner: "{{ user }}"
   tags:
     - configure
 
@@ -37,6 +37,6 @@
 
 - name: Giving user ownership of the singularity sandbox image
   file:
-    path: "{{ fbl_directory }}/{{ user }}/fbl_image
+    path: "{{ fbl_directory }}/{{ user }}/fbl_image"
     mode: 0755
     owner: "{{ user }}"
