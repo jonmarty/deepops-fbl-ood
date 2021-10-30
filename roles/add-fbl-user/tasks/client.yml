@@ -28,7 +28,7 @@
     path: "{{ fbl_directory }}/{{ user }}"
     state: directory
     mode: 0755
-    owner: "{{ user }}"
+    owner: user
   tags:
     - configure
 
