@@ -3,7 +3,7 @@
   when: new_user | default(false)
 
 - name: Modify permissions for added UNIX user
-  command: usermod -aG "{{ ood-unix-group }}" "{{ user }}"
+  command: usermod -aG "{{ ood_unix_group }}" "{{ user }}"
   when: new_user | default(false)
   
 
