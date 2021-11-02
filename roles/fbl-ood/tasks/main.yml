@@ -1,3 +1,8 @@
+- name: Add ood group on unix
+  group:
+    name: "{{ ood_unix_group }}"
+    state: present
+
 - name: Set up FBL-OOD on server
   include: server.yml
   when: is_server | default(false)
