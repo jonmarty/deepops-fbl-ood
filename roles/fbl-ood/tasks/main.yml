@@ -3,6 +3,23 @@
     name: "{{ ood_unix_group }}"
     state: present
 
+- name: Allow ood users to access the server over ssh
+  copy:
+    dest: /etc/ssh/sshd_config.d/allow_ood.conf
+    content: |
+      Match group ood
+        AllowUsers *
+
+- name: Restart ssh
+  service:
+    name: ssh
+    state: restarted
+
+- name: Restart sshd
+  service:
+    name: sshd
+    state: restarted
+
 - name: Set up FBL-OOD on server
   include: server.yml
   when: is_server | default(false)
@@ -10,4 +27,3 @@
 - name: Set up FBL-OOD on client
   include: client.yml
   when: is_client | default(false)
-  
