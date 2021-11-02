@@ -26,5 +26,6 @@
     name: add-fbl-user
   vars:
     is_client: yes
+    is_server: no
     user: "{{ main_user }}"
     new_user: no
