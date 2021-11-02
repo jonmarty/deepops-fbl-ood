@@ -26,5 +26,5 @@
     name: add-fbl-user
   vars:
     is_client: yes
-    user: ansible_user
+    user: "{{ main_user }}"
     new_user: no
