@@ -1,4 +1,5 @@
 ood_slurm_account: "ood"
+ood_unix_group: "ood"
 
 # TODO: Connect this with ood_slurm_account default variable in add-fbl-user and rm-fbl-user
 
