@@ -1,3 +1,6 @@
+- debug:
+    msg: is a server
+
 - name: Add UNIX user
   command: useradd -m -u "{{ user }}" -p `mkpasswd "{{ password }}"` -s \bin\bash -d "/home/{{ user }}" "{{ user }}"
   when: new_user | default(false)
