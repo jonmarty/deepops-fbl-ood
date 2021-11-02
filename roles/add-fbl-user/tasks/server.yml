@@ -11,22 +11,22 @@
   command: chmod go-rwx "/home/{{ user }}"
   when: new_user | default(false)
 
-- name: Configure ssh to allow NEWUSER
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    line: "AllowUsers {{ user }}"
-    state: present
-    backup: yes 
+#- name: Configure ssh to allow NEWUSER
+#  lineinfile:
+#    path: /etc/ssh/sshd_config
+#    line: "AllowUsers {{ user }}"
+#    state: present
+#    backup: yes 
 
-- name: Restarting ssh
-  systemd:
-    service: ssh
-    state: restarted
+#- name: Restarting ssh
+#  systemd:
+#    service: ssh
+#    state: restarted
 
-- name: Restarting sshd
-  systemd:
-    service: sshd
-    state: restarted
+#- name: Restarting sshd
+#  systemd:
+#    service: sshd
+#    state: restarted
 
 - name: Add slurm user
   command: sacctmgr -i create user {{user}} account={{ood_slurm_account}} adminlevel=None
