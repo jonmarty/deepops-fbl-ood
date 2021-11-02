@@ -1,3 +1,6 @@
+- debug:
+    msg: "is a server"
+
 - name: Clone FBL-OOD repository
   git:
        repo: https://github.com/jonmarty/FlyBrainLab-OOD
