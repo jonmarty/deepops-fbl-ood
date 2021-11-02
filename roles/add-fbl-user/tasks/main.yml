@@ -1,7 +1,5 @@
-- name: Add new FBL user on server
-  include: server.yml
+- include: server.yml
   when: is_server | default(false)
 
-- name: Add new FBL user on client
-  include: client.yml
+- include: client.yml
   when: is_client | default(false)
