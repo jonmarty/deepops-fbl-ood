@@ -1,3 +1,9 @@
+- debug:
+    var: is_server
+
+- debug:
+    var: is_client
+
 - include: server.yml
   when: is_server | default(false)
 
