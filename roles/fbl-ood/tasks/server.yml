@@ -28,3 +28,4 @@
     is_client: no
     user: "{{ main_user }}"
     new_user: no
+  when: is_server
