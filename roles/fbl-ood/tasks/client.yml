@@ -1,3 +1,6 @@
+- debug:
+    msg: is a client
+
 - name: Create FBL directory (under which fbl user directories are housed) on client
   file:
     path: "{{ fbl_directory }}"
