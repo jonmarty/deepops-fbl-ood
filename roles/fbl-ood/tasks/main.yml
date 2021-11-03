@@ -1,3 +1,9 @@
+- debug:
+    var: is_server
+
+- debug:
+    var: is_client
+
 - name: Add ood group on unix
   group:
     name: "{{ ood_unix_group }}"
