@@ -6,6 +6,10 @@
     path: "{{ fbl_directory }}"
     state: directory
 
+- name: Install python docker module
+  pip:
+    name: docker
+
 - name: Pull FBL docker image from Docker Hub
   docker_image:
     name: fruitflybrain/fbl
