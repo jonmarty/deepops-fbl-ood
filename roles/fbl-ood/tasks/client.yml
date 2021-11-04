@@ -36,3 +36,4 @@
     name: fruitflybrain/fbl
     tag: slurm
     state: absent
+    force_absent: yes
