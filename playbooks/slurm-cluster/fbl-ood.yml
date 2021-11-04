@@ -2,8 +2,10 @@
   become: yes
   roles:
     - {role: fbl-ood, is_server: yes, main_user: "{{ ansible_user }}", use_cas: ood_use_cas}
-
+    - {role: add-fbl-user, is_server: yes, user: "{{ ansible_user }}", new_user: no}
+    
 - hosts: slurm-node
   become: yes
   roles:
     - {role: fbl-ood, is_client: yes, main_user: "{{ ansible_user }}", use_cas: ood_use_cas}
+    - {role: add-fbl-user, is_client: yes, user: "{{ ansible_user }}", new_user: no}
