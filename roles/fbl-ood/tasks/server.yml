@@ -19,13 +19,3 @@
   register: create_account_result
   failed_when: "create_account_result.rc != 0 and 'Nothing new added' not in create_account_result.stdout"
   changed_when: "'Nothing new added' not in create_account_result.stdout"
-  
-- name: Add main fbl user on server
-  include_role:
-    name: add-fbl-user
-  vars:
-    is_server: yes
-    is_client: no
-    user: "{{ main_user }}"
-    new_user: no
-  when: is_server
