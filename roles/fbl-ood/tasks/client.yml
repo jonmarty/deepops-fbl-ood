@@ -27,7 +27,7 @@
 - name: Kill FBL docker container
   docker_container:
     name: fbl
-    state: stopped
+    state: absent
 
 #command: docker kill "{{ fbl_instance_id.stdout }}"
 
