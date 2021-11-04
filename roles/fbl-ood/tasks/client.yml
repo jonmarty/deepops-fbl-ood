@@ -24,7 +24,7 @@
   command: docker cp "{{ fbl_instance_id.stdout }}:/" "{{ fbl_directory }}/fbl_image"
 
 - name: Kill FBL docker container
-  command: docker kill "{{ fbl_instance_id }}"
+  command: docker kill "{{ fbl_instance_id.stdout }}"
 
 - name: Remove FBL docker image
   command: docker image rm fruitflybrain/fbl:slurm
