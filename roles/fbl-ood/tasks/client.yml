@@ -23,13 +23,3 @@
 
 - name: Remove FBL docker image
   command: docker image rm fruitflybrain/fbl:slurm
-
-- name: Add main fbl user on client
-  include_role:
-    name: add-fbl-user
-  vars:
-    is_client: yes
-    is_server: no
-    user: "{{ main_user }}"
-    new_user: no
-  when: is_client
