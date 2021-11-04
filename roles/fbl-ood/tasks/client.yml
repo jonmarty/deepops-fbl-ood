@@ -4,7 +4,7 @@
 - name: Create FBL directory (under which fbl user directories are housed) on client
   file:
     path: "{{ fbl_directory }}"
-    state: present
+    state: directory
 
 - name: Pull FBL docker image from Docker Hub
   docker_image:
