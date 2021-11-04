@@ -21,7 +21,7 @@
   register: fbl_instance_id
 
 - name: Copy FBL docker container contents into FBL directory
-  command: docker cp "{{ fbl_instance_id }}:/" "{{ fbl_directory }}/fbl_image"
+  command: docker cp "{{ fbl_instance_id.stdout }}:/" "{{ fbl_directory }}/fbl_image"
 
 - name: Kill FBL docker container
   command: docker kill "{{ fbl_instance_id }}"
