@@ -15,6 +15,7 @@
     name: fruitflybrain/fbl
     tag: slurm
     state: present
+    source: pull
 
 - name: Create FBL docker container
   command: docker create fruitflybrain/fbl:slurm /bin/bash --name fbl
