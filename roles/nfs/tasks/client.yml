@@ -1,12 +1,12 @@
 ---
 
 - name: configure ports
-    copy:
-      dest: "/etc/sysconfig/nfs"
-      content: |
-        STATD_PORT=9501
-        LOCKD_UDP_PORT=9502
-        LOCKD_TCP_PORT=9503
+  copy:
+    dest: "/etc/sysconfig/nfs"
+    content: |
+      STATD_PORT=9501
+      LOCKD_UDP_PORT=9502
+      LOCKD_TCP_PORT=9503
 
 - name: ensure mountpoint exists
   file:
