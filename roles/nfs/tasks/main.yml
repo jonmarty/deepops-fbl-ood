@@ -47,5 +47,3 @@
 
 - include: client.yml
   when: nfs_is_client
-
-- include: ports.yml
