@@ -1,0 +1,7 @@
+- hosts: slurm-node[0]
+  tasks:
+    - command: ls -d *
+      chdir: /fbl
+      register: users
+    - debug:
+        msg: "{{ users.stdout }}"
