@@ -1,0 +1,9 @@
+---
+name: Testing
+category: Interactive Apps
+subcategory: Servers
+role: batch_connect
+description: |
+  This app will launch the FBL suite of servers, as well as a Jupyter Lab instance that the user can access. On the current machine, a single (1) GPU instance with 5GB CUDA memory and 14 streaming processors will be allocated, in addition to 4 CPU cores and 20G memory.
+
+  Please choose the number of hours you need for the current job.

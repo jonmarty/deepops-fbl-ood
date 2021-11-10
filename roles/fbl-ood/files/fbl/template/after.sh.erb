@@ -1,0 +1,27 @@
+# Wait for FBL to start
+echo "Waiting for FBL to open ports ${ffbo_port} and ${port}..."
+if wait_until_port_used "${host}:${ffbo_port}" 120; then
+  echo "Discovered FFBO listening on port ${ffbo_port}!"
+else
+  echo "Timed out waiting for FFBO to open port ${ffbo_port}!"
+  clean_up 1
+fi
+if wait_until_port_used "${host}:${port}" 120; then
+  echo "Discovered FBL listening on port ${port}!"
+else
+  echo "Timed out waiting for FBL to open port ${port}!"
+  clean_up 1
+fi
+#if wait_until_port_used "${host}:${orientdb_binary_port}" 120; then
+#  echo "Discovered ORIENTDB listening for binary connections on port ${orientdb_binary_port}!"
+#else
+#  echo "Timed out waiting for ORIENTDB to open port ${orientdb_binary_port} for binary connections!"
+#  clean_up 1
+#fi
+#if wait_until_port_used "${host}:${orientdb_html_port}" 120; then
+#  echo "Discovered ORIENTDB listening for html connections on port ${orientdb_html_port}!"
+#else
+#  echo "Timed out waiting for ORIENTDB to open port ${orientdb_html_port} for html connections!"
+#  clean_up 1
+#fi
+sleep 2

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+setup_env () {
+  export FFBOIMAGE="/fbl/${USER}/fbl_image"
+  export JUPYTER_CONFIG_PATH="/root/.jupyter"
+  export FFBO_CONFIG_PATH="/root/.ffbo"
+}
+setup_env
+
+singularity run -w -f --userns --nv \
+	        -B "./.bashrc:/root/.bashrc" \
+                -B "./jupyter:${JUPYTER_CONFIG_PATH}" \
+                -B "./ffbo:${FFBO_CONFIG_PATH}" \
+		-B "./libcuda.so.470.57.02:/usr/lib/x86_64-linux-gnu/libcuda.so.1" \
+                $FFBOIMAGE

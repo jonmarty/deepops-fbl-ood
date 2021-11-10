@@ -1,15 +1,20 @@
 - debug:
     msg: "is a server"
 
-- name: Clone FBL-OOD repository
-  git:
-       repo: https://github.com/jonmarty/FlyBrainLab-OOD
-       dest: /home/ubuntu/fbl-ood
-       clone: yes
-       update: yes
+#- name: Clone FBL-OOD repository
+#  git:
+#       repo: https://github.com/jonmarty/FlyBrainLab-OOD
+#       dest: /home/ubuntu/fbl-ood
+#       clone: yes
+#       update: yes
 
-- name: Copy OOD-APP into OOD apps directory
-  command: cp -r /home/ubuntu/fbl-ood/OOD-app /var/www/ood/apps/sys/fbl-ood
+#- name: Copy OOD-APP into OOD apps directory
+#  command: cp -r /home/ubuntu/fbl-ood/OOD-app /var/www/ood/apps/sys/fbl-ood
+
+- name: Add fbl app to ood
+  copy:
+       src: fbl
+       dest: /var/www/ood/apps/sys/fbl
 
 #- name: Copy fbl-ood scripts to /bin
 #  command: cp /home/ubuntu/fbl-ood/bin/* /bin

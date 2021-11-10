@@ -1,0 +1,55 @@
+# Export the module function if it exists
+[[ $(type -t module) == "function" ]] && export -f module
+
+# Find available port to run server on
+port=$(find_port ${host})
+ffbo_port=$(find_port ${host})
+orientdb_binary_port=$(find_port ${host})
+orientdb_html_port=$(find_port ${host})
+
+# Generate SHA1 encrypted password (requires OpenSSL installed)
+SALT=$(create_passwd 16)
+password=$(create_passwd 16)
+PASSWORD_SHA1=$(echo -n "${password}${SALT}" | openssl dgst -sha1 | awk '{print $NF}')
+
+# The '$CONFIG_FILE' environment variable is exported as it is used in the main
+# 'script.sh.erb' file when launching the Jupyter Notebook server.
+export JUPYTER_CONFIG="${PWD}/jupyter/jupyter_server_config.py"
+
+# Generate Jupyter configuration file with secure file permissions
+(
+umask 077
+cat > "${JUPYTER_CONFIG}" << EOL
+c.ServerApp.ip = '*'
+c.ServerApp.port = $port
+c.ServerApp.port_retries = 0
+c.ServerApp.password = u'sha1:${SALT}:${PASSWORD_SHA1}'
+c.ServerApp.base_url = '/node/${host}/${port}'
+c.ServerApp.open_browser = False
+c.ServerApp.allow_origin = '*'
+c.ServerApp.root_dir = '/root'
+c.ServerApp.disable_check_xsrf = True
+c.ServerApp.iopub_data_rate_limit = 100000000
+c.ServerApp.iopub_msg_rate_limit = 50000
+c.ServerApp.allow_root = True
+EOL
+)
+
+export JUPYTER_CONFIG
+
+export FFBO_CONFIG="${PWD}/ffbo/config/config.ini"
+
+# Replace the FFBO port with the generated port
+sed -i 's/{FFBO-PORT}/'"${ffbo_port}"'/g' $FFBO_CONFIG
+
+export NEUROMYNERVA_CONFIG="${PWD}/jupyter/lab/user-settings/@flybrainlab/neuromynerva/plugin.jupyterlab-settings"
+
+sed -i 's/{FFBO-PORT}/'"${ffbo_port}"'/g' $NEUROMYNERVA_CONFIG
+
+#export ORIENTDB_CONFIG="${PWD}/orientdb-server-config.xml"
+
+sed -i "s+{ORIENTDB-BINARY-PORT}+$orientdb_binary_port+g" $FFBO_CONFIG
+sed -i "s+{ORIENTDB-HTTP-PORT}+$orientdb_html_port+g" $FFBO_CONFIG
+
+#export NEUROARCH_SCRIPT="${PWD}/run_neuroarch.sh"
+#sed -i "s+{ORIENTDB-BINARY-PORT}+$orientdb_binary_port+g" $NEUROARCH_SCRIPT
