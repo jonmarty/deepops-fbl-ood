@@ -31,9 +31,9 @@
 
 #command: docker kill "{{ fbl_instance_id.stdout }}"
 
-- name: Remove FBL docker image
-  docker_image:
-    name: fruitflybrain/fbl
-    tag: slurm
-    state: absent
-    force_absent: yes
+#- name: Remove FBL docker image
+#  docker_image:
+#    name: fruitflybrain/fbl
+#    tag: slurm
+#    state: absent
+#    force_absent: yes
