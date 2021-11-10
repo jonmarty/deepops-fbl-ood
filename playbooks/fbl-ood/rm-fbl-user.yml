@@ -1,0 +1,7 @@
+- hosts: slurm-master
+  roles:
+    - {name: rm-fbl-user, is_server: yes, user: "{{ user }}"}
+
+- hosts: slurm-node
+  roles:
+    - {name: rm-fbl-user, is_client: yes, user: "{{ user }}"}
