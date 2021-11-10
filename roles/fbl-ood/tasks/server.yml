@@ -16,6 +16,26 @@
        src: fbl
        dest: /var/www/ood/apps/sys/fbl
 
+- name: Make sure before.sh.erb has the correct permissions
+  file:
+    path: /var/www/ood/apps/sys/fbl/template/before.sh.erb
+    mode: "0744"
+
+- name: Make sure after.sh.erb has the correct permissions
+  file:
+    path: /var/www/ood/apps/sys/fbl/template/after.sh.erb
+    mode: "0744"
+
+- name: Make sure script.sh.erb has the correct permissions
+  file:
+    path: /var/www/ood/apps/sys/fbl/template/script.sh.erb
+    mode: "0744"
+
+- name: Make sure libcuda.so.470.57.02 has the correct permissions
+  file:
+    path: /var/www/ood/apps/sys/fbl/template/libcuda.so.470.57.02
+    mode: "0744"
+
 #- name: Copy fbl-ood scripts to /bin
 #  command: cp /home/ubuntu/fbl-ood/bin/* /bin
 
