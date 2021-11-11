@@ -13,7 +13,7 @@
 
 - name: Remove fbl app if it previously existed
   file:
-    path: /var/www/ood/apps/sys/fbl
+    path: /var/www/ood/apps/sys/fbl/
     state: absent
 
 - name: Add fbl app to ood
