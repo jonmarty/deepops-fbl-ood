@@ -12,9 +12,7 @@
 #  command: cp -r /home/ubuntu/fbl-ood/OOD-app /var/www/ood/apps/sys/fbl-ood
 
 - name: Remove fbl app if it previously existed
-  file:
-    path: /var/www/ood/apps/sys/fbl/
-    state: absent
+  command: rm -rf /var/www/ood/apps/sys/fbl
 
 - name: Add fbl app to ood
   copy:
